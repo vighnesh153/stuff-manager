@@ -1,0 +1,11 @@
+@import "src/global";
+
+.container {
+  @extend .full-space;
+}
+
+@media screen and (max-width: 750px) {
+  .container {
+    width: 99%;
+  }
+}
