@@ -1,0 +1,37 @@
+@import "src/global";
+
+nav {
+  @extend .full-space;
+  @extend .flex-center;
+
+  background-color: $color1;
+
+  .content {
+    width: 90%;
+
+    @extend .flex-center;
+    justify-content: space-between;
+
+    .title {
+      font-size: 22px;
+      color: $color2;
+    }
+
+    .btn.btn-logout {
+      padding: 5px 10px;
+      border-radius: 5px;
+
+      background-color: $color2;
+      color: $color1;
+      font-size: 16px;
+      font-weight: bold;
+
+      cursor: pointer;
+      transition: transform 200ms ease-in-out;
+
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
+  }
+}

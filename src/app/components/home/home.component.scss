@@ -1,0 +1,25 @@
+@import "src/global";
+
+.container {
+  @extend .full-space;
+  position: relative;
+
+  .nav {
+    height: 10%;
+    position: relative;
+  }
+
+  .body {
+    height: 90%;
+    @extend .flex-center;
+
+    .content {
+      width: 90%;
+      height: 90%;
+
+      overflow-y: auto;
+
+      border: 1px solid green;
+    }
+  }
+}
