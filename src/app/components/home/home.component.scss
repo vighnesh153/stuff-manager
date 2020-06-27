@@ -23,7 +23,8 @@
       padding: 10px;
 
       display: grid;
-      grid-template: 1fr 1fr / 1fr 2fr;
+      grid-template-rows: repeat(2, minmax(0, 1fr));
+      grid-template-columns: 1fr 2fr;
       grid-gap: 7px;
 
       overflow-y: auto;

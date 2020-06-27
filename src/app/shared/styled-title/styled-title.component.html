@@ -3,5 +3,7 @@
     {{ title }}
     <div class="add-new" (click)="notifyListeners()">+</div>
   </div>
-  <ng-content></ng-content>
+  <div class="content">
+    <ng-content></ng-content>
+  </div>
 </div>

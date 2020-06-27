@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Task } from 'src/app/models/task';
-import { StateService } from 'src/app/services/state.service';
+import { StateHelperService } from 'src/app/services/state-helper.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,13 +12,13 @@ export class TasksStateService {
     return [...this.tasks];
   }
 
-  constructor(private stateService: StateService) { }
+  constructor(private stateHelper: StateHelperService) { }
 
   create(heading: string, additionalInfo: string): void {
     this.tasks.push({
-      id: this.stateService.generateId(), heading, additionalInfo
+      id: this.stateHelper.generateId(), heading, additionalInfo
     });
-    this.stateService.hasUpdates = true;
+    this.stateHelper.hasUpdates = true;
   }
 
   update(id: string, heading: string, additionalInfo: string): void {
@@ -28,11 +28,11 @@ export class TasksStateService {
         item.additionalInfo = additionalInfo;
       }
     }
-    this.stateService.hasUpdates = true;
+    this.stateHelper.hasUpdates = true;
   }
 
   remove(id: string): void {
     this.tasks = this.tasks.filter(item => item.id !== id);
-    this.stateService.hasUpdates = true;
+    this.stateHelper.hasUpdates = true;
   }
 }

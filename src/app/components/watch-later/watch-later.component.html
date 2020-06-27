@@ -1,5 +1,38 @@
 <div class="container">
-  <app-styled-title title="Watch Later">
-    <p>watch-later works!</p>
+  <app-styled-title title="Watch Later" (addNewEvent)="addNewItem()">
+    <div class="item" *ngFor="let item of watchLaterList">
+      <a [href]="item.url" target="_blank">{{ item.heading }}</a>
+      <app-edit-delete-btn-pair
+        class="btns"
+        [itemId]="item.id"
+        (editEvent)="editItem($event)"
+        (deleteEvent)="deleteItem($event)"
+      ></app-edit-delete-btn-pair>
+    </div>
+    <div class="no-items" *ngIf="watchLaterList.length === 0">
+      Nothing to watch later...
+    </div>
   </app-styled-title>
 </div>
+
+<app-modal
+  *ngIf="isFormOpen"
+  (modalClose)="closeForm()"
+>
+  <div class="form-container">
+    <div class="form">
+      <label class="input">
+        <input type="text" placeholder="Heading" [(ngModel)]="newHeading">
+      </label>
+      <label class="input">
+        <input type="text" placeholder="URL" [(ngModel)]="newUrl">
+      </label>
+      <div class="btn btn-submit"
+           (click)="isUpdateMode ? storeEdits() : createNew()"
+      >
+        {{ isUpdateMode ? 'Update' : 'Add' }}
+      </div>
+      <div class="btn btn-cancel" (click)="closeForm()">Cancel</div>
+    </div>
+  </div>
+</app-modal>

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { StateService } from 'src/app/services/state.service';
+import { StateHelperService } from 'src/app/services/state-helper.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,10 +11,10 @@ export class NoteStateService {
     return this.note;
   }
 
-  constructor(private stateService: StateService) { }
+  constructor(private stateHelper: StateHelperService) { }
 
   update(note: string): void {
     this.note = note;
-    this.stateService.hasUpdates = true;
+    this.stateHelper.hasUpdates = true;
   }
 }

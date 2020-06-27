@@ -1,0 +1,18 @@
+@import "src/global";
+
+.container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+
+  @extend .flex-center;
+  justify-content: space-between;
+}
+
+.btn-edit:hover {
+  color: green;
+}
+
+.btn-delete:hover {
+  color: red;
+}

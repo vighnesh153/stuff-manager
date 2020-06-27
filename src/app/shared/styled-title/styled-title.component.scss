@@ -22,6 +22,12 @@
     @extend .flex-center;
   }
 
+  .content {
+    height: 85%;
+    position: relative;
+    overflow-y: auto;
+  }
+
   .add-new {
     position: absolute;
     right: 10px;
