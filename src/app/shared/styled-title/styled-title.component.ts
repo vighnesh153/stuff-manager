@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-styled-title',
@@ -6,11 +6,18 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./styled-title.component.scss']
 })
 export class StyledTitleComponent implements OnInit {
-  @Input() title = 'Title';
+  @Input() title = 'TITLE';
+
+  @Output() addNewEvent = new EventEmitter();
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  notifyListeners(): void {
+    this.addNewEvent.emit();
+    console.log('Opening a modal to add new item');
   }
 
 }

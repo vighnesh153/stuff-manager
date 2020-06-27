@@ -13,11 +13,24 @@
   .title {
     height: 15%;
     max-height: 70px;
+    position: relative;
 
     background-color: $color1;
     color: $color2;
     font-size: 20px;
 
     @extend .flex-center;
+  }
+
+  .add-new {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+
+    color: $color2;
+
+    cursor: pointer;
+    transform: translateY(-50%);
+    z-index: 1;
   }
 }
