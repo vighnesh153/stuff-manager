@@ -4,8 +4,97 @@
   @extend .full-space;
 }
 
-@media screen and (max-width: 750px) {
-  .container {
-    width: 99%;
+.item {
+  border-bottom: 1px solid #ccc;
+
+  .header {
+    padding: 5px 10px;
+    position: relative;
+    @extend .flex-center;
+    justify-content: space-between;
+
+    background-color: #ccc;
+    font-size: 14px;
+
+    .btns {
+      width: 15%;
+      min-width: 30px;
+      max-width: 40px;
+      height: 50%;
+    }
+  }
+
+  .body {
+    padding: 5px 10px;
+    font-size: 12px;
+  }
+}
+
+.no-items {
+  margin: 5px 0 0 10px;
+
+  color: #777;
+  font-size: 20px;
+  font-style: italic;
+}
+
+.form-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+
+  @extend .flex-center;
+
+  .form {
+    width: 70%;
+
+    .input {
+      width: 100%;
+      margin-bottom: 20px;
+
+      display: block;
+
+      input {
+        height: 40px;
+      }
+
+      textarea {
+        resize: none;
+      }
+
+      input,
+      textarea {
+        width: 100%;
+        padding: 5px 10px;
+
+        font-size: 18px;
+      }
+    }
+
+    .btn {
+      width: 100%;
+      height: 40px;
+
+      @extend .flex-center;
+
+      cursor: pointer;
+      overflow: hidden;
+      transition: transform 200ms ease-in-out;
+
+      &:hover {
+        transform: scale(1.01);
+      }
+    }
+
+    .btn-submit {
+      margin-bottom: 5px;
+
+      background-color: $color1;
+      color: $color2;
+    }
+
+    .btn-cancel {
+      background-color: #bbb;
+    }
   }
 }
