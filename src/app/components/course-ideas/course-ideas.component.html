@@ -1,5 +1,45 @@
 <div class="container">
-  <app-styled-title title="Course Ideas">
-    <p>course-ideas works!</p>
+  <app-styled-title title="Course Ideas" (addNewEvent)="addNewItem()">
+    <div class="item" *ngFor="let item of courseIdeas">
+      <div class="header">
+        <div class="title">{{ item.title }}</div>
+        <app-edit-delete-btn-pair
+          class="btns"
+          iconSize="12px"
+          [itemId]="item.id"
+          (editEvent)="editItem($event)"
+          (deleteEvent)="deleteItem($event)"
+        ></app-edit-delete-btn-pair>
+      </div>
+      <div class="body">
+        {{ item.additionalInfo }}
+      </div>
+    </div>
+    <div class="no-items" *ngIf="courseIdeas.length === 0">
+      No course planned...
+    </div>
   </app-styled-title>
 </div>
+
+<app-modal
+  *ngIf="isFormOpen"
+  (modalClose)="closeForm()"
+>
+  <div class="form-container">
+    <div class="form">
+      <label class="input">
+        <input type="text" placeholder="Title" [(ngModel)]="newTitle">
+      </label>
+      <label class="input">
+        <textarea type="text" placeholder="Additional Info" rows="5"
+                  [(ngModel)]="newAdditionalInfo"></textarea>
+      </label>
+      <div class="btn btn-submit"
+           (click)="isUpdateMode ? storeEdits() : createNew()"
+      >
+        {{ isUpdateMode ? 'Update' : 'Add' }}
+      </div>
+      <div class="btn btn-cancel" (click)="closeForm()">Cancel</div>
+    </div>
+  </div>
+</app-modal>
