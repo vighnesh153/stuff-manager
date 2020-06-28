@@ -4,6 +4,7 @@
       <a [href]="item.url" target="_blank">{{ item.heading }}</a>
       <app-edit-delete-btn-pair
         class="btns"
+        iconSize="12px"
         [itemId]="item.id"
         (editEvent)="editItem($event)"
         (deleteEvent)="deleteItem($event)"

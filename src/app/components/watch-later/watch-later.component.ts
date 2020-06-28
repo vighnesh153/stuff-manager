@@ -2,6 +2,13 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { WatchLaterStateService } from 'src/app/services/watch-later-state.service';
 import { WatchLater } from 'src/app/models/watch-later';
+import { environment } from 'src/environments/environment';
+
+const DUMMY_WATCH_LATER: WatchLater = {
+  id: '11111',
+  heading: 'Just for styling.',
+  url: 'url'
+};
 
 @Component({
   selector: 'app-watch-later',
@@ -25,6 +32,9 @@ export class WatchLaterComponent implements OnInit, OnDestroy {
     this.hasUpdatesSubscription = this.watchLaterState.hasUpdates
       .subscribe(() => {
         this.watchLaterList = this.watchLaterState.getWatchLaterList;
+        if (environment.production === false) {
+          this.watchLaterList.push(DUMMY_WATCH_LATER);
+        }
       });
   }
 
