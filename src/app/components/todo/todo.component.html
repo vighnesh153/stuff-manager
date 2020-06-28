@@ -1,0 +1,36 @@
+<div class="container">
+  <app-styled-title title="Todo List" (addNewEvent)="addNewItem()">
+    <div class="item" *ngFor="let item of tasks">
+      <div>{{ item.content }}</div>
+      <app-edit-delete-btn-pair
+        class="btns"
+        iconSize="12px"
+        [itemId]="item.id"
+        (editEvent)="editItem($event)"
+        (deleteEvent)="deleteItem($event)"
+      ></app-edit-delete-btn-pair>
+    </div>
+    <div class="no-items" *ngIf="tasks.length === 0">
+      Nothing to do...
+    </div>
+  </app-styled-title>
+</div>
+
+<app-modal
+  *ngIf="isFormOpen"
+  (modalClose)="closeForm()"
+>
+  <div class="form-container">
+    <div class="form">
+      <label class="input">
+        <input type="text" placeholder="Task" [(ngModel)]="newContent">
+      </label>
+      <div class="btn btn-submit"
+           (click)="isUpdateMode ? storeEdits() : createNew()"
+      >
+        {{ isUpdateMode ? 'Update' : 'Add' }}
+      </div>
+      <div class="btn btn-cancel" (click)="closeForm()">Cancel</div>
+    </div>
+  </div>
+</app-modal>

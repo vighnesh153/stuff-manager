@@ -14,6 +14,7 @@ import { CourseIdeasComponent } from './components/course-ideas/course-ideas.com
 import { NotesComponent } from './components/notes/notes.component';
 import { StyledTitleComponent } from './shared/styled-title/styled-title.component';
 import { EditDeleteBtnPairComponent } from './shared/edit-delete-btn-pair/edit-delete-btn-pair.component';
+import { TodoComponent } from './components/todo/todo.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { EditDeleteBtnPairComponent } from './shared/edit-delete-btn-pair/edit-d
     CourseIdeasComponent,
     NotesComponent,
     StyledTitleComponent,
-    EditDeleteBtnPairComponent
+    EditDeleteBtnPairComponent,
+    TodoComponent
   ],
   imports: [
     BrowserModule,
