@@ -1,6 +1,9 @@
 <div class="container">
-  <app-styled-title title="Notes">
-    <p>notes works!</p>
+  <app-styled-title title="Notes" [displayAddNewButton]="false">
+    <label>
+      <textarea class="notes" [(ngModel)]="content"
+                placeholder="Enter your notes here..."
+                (change)="contentChange()"></textarea>
+    </label>
   </app-styled-title>
 </div>
-
