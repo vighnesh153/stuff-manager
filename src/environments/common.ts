@@ -7,7 +7,7 @@ export const common = {
   githubGists: 'https://api.github.com/gists',
   corsAnywhere: 'https://cors-anywhere.herokuapp.com/',
   dbInfo: {
-    introFileName: '__stuff-manager-db.txt',
+    introFileName: '__stuff-manager-db-42-42-42-42-42.txt',
     dataFileName: 'data.json'
   }
 };
