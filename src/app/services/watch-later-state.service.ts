@@ -14,6 +14,10 @@ export class WatchLaterStateService {
     return [...this.watchLaterList];
   }
 
+  init(watchLaterList: WatchLater[]): void {
+    this.watchLaterList = watchLaterList;
+  }
+
   constructor(private stateHelper: StateHelperService) { }
 
   create(heading: string, url: string): void {

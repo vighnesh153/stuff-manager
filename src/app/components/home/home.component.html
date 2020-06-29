@@ -3,7 +3,11 @@
     <app-navbar></app-navbar>
   </div>
   <div class="body">
-    <div class="content">
+    <div class="loading" *ngIf="loading">Loading</div>
+    <div class="error" *ngIf="!loading && errorOccurred">
+      Some error occurred.
+    </div>
+    <div class="content" *ngIf="!loading && !errorOccurred">
       <app-watch-later class="watch-later"></app-watch-later>
       <app-projects class="projects"></app-projects>
       <app-course-ideas class="course-ideas"></app-course-ideas>

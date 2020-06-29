@@ -14,6 +14,10 @@ export class TasksStateService {
     return [...this.tasks];
   }
 
+  init(tasks: Task[]): void {
+    this.tasks = tasks;
+  }
+
   constructor(private stateHelper: StateHelperService) { }
 
   create(content: string): void {

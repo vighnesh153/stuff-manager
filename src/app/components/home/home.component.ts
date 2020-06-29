@@ -10,11 +10,21 @@ import { StateHelperService } from 'src/app/services/state-helper.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit, CanComponentDeactivate {
+  loading = true;
+  errorOccurred = false;
 
   constructor(private gistService: GithubGistService,
               private stateHelper: StateHelperService) { }
 
   ngOnInit(): void {
+    (async () => {
+      try {
+        await this.gistService.appInitializer();
+      } catch (e) {
+        this.errorOccurred = true;
+      }
+      this.loading = false;
+    })();
   }
 
   canComponentDeactivate(): Observable<boolean> | Promise<boolean> | boolean {

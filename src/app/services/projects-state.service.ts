@@ -14,6 +14,10 @@ export class ProjectsStateService {
     return [...this.projects];
   }
 
+  init(projects: Project[]): void {
+    this.projects = projects;
+  }
+
   constructor(private stateHelper: StateHelperService) { }
 
   create(title: string, additionalInfo: string): void {

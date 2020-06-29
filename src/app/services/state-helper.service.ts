@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class StateHelperService {
   hasUpdates = false;
+  dataArrivedSuccessfully = false;
 
   constructor() { }
 

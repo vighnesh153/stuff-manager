@@ -11,6 +11,10 @@ export class NoteStateService {
     return this.note;
   }
 
+  init(note: string): void {
+    this.note = note;
+  }
+
   constructor(private stateHelper: StateHelperService) { }
 
   update(note: string): void {

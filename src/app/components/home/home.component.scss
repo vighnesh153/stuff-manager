@@ -30,6 +30,15 @@
 
       overflow-y: auto;
     }
+
+    .loading,
+    .error {
+      height: 100%;
+      @extend .flex-center;
+
+      font-size: 20px;
+      color: $color1;
+    }
   }
 }
 

@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,6 +18,7 @@ import { StyledTitleComponent } from './shared/styled-title/styled-title.compone
 import { EditDeleteBtnPairComponent } from './shared/edit-delete-btn-pair/edit-delete-btn-pair.component';
 import { TodoComponent } from './components/todo/todo.component';
 import { PleaseWaitComponent } from './components/please-wait/please-wait.component';
+import { GithubGistAuthInterceptor } from 'src/app/interceptors/github-gist-auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,13 @@ import { PleaseWaitComponent } from './components/please-wait/please-wait.compon
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: GithubGistAuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

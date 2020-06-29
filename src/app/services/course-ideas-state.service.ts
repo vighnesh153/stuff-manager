@@ -14,6 +14,10 @@ export class CourseIdeasStateService {
     return [...this.courseIdeas];
   }
 
+  init(courseIdeas: CourseIdea[]): void {
+    this.courseIdeas = courseIdeas;
+  }
+
   constructor(private stateHelper: StateHelperService) { }
 
   create(title: string, additionalInfo: string): void {
