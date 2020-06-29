@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable, of } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { catchError, map, take } from 'rxjs/operators';
 
 import { environment } from 'src/environments/environment';
 
@@ -78,20 +78,34 @@ export class GithubGistService {
             return scope.includes('gist');
           }
         ),
-        catchError(async (err) => false)
+        catchError(async _ => false)
       );
   }
 
-  async appInitializer(): Promise<void> {
-    (await this.initializeApp())
-      .subscribe((data: DbData) => {
-        this.projectsState.init(data.projects);
-        this.watchLaterState.init(data.watchLater);
-        this.courseIdeasState.init(data.courseIdeas);
-        this.tasksState.init(data.tasks);
-        this.notesState.init(data.notes);
-        this.stateHelper.dataArrivedSuccessfully = true;
-      });
+  persistData(data: DbData): Observable<any> {
+    const url = `${environment.githubGists}/${this.gistId}`;
+    const body = {
+      files: {
+        [environment.dbInfo.dataFileName]: {
+          content: JSON.stringify(data)
+        }
+      }
+    };
+    return this.http.post(url, body)
+      .pipe(take(1));
+  }
+
+  async appInitializer(): Promise<Observable<DbData>> {
+    return (await this.initializeApp());
+  }
+
+  setData(data: DbData): void {
+    this.projectsState.init(data.projects);
+    this.watchLaterState.init(data.watchLater);
+    this.courseIdeasState.init(data.courseIdeas);
+    this.tasksState.init(data.tasks);
+    this.notesState.init(data.notes);
+    this.stateHelper.dataArrivedSuccessfully = true;
   }
 
   private async initializeApp(): Promise<Observable<DbData>> {

@@ -3,8 +3,17 @@
     <div class="title">
       Stuff Manager
     </div>
-    <div class="btn btn-logout" (click)="logOut()">
-      Log Out
+    <div class="btns">
+      <div class="btn btn-save" (click)="saveData()"
+           [ngClass]="{
+              invisible: hasUpdates === false
+           }"
+      >
+        Save
+      </div>
+      <div class="btn btn-logout" (click)="logOut()">
+        Log Out
+      </div>
     </div>
   </div>
 </nav>

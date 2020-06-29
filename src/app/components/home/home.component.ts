@@ -3,6 +3,7 @@ import { GithubGistService } from 'src/app/services/github-gist.service';
 import { CanComponentDeactivate } from 'src/app/guards/has-changes.guard';
 import { Observable } from 'rxjs';
 import { StateHelperService } from 'src/app/services/state-helper.service';
+import { DbData } from 'src/app/models/db-data';
 
 @Component({
   selector: 'app-home',
@@ -19,7 +20,9 @@ export class HomeComponent implements OnInit, CanComponentDeactivate {
   ngOnInit(): void {
     (async () => {
       try {
-        await this.gistService.appInitializer();
+        const initializer = await this.gistService.appInitializer();
+        const dbData: DbData = await initializer.toPromise();
+        this.gistService.setData(dbData);
       } catch (e) {
         this.errorOccurred = true;
       }

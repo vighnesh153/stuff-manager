@@ -18,7 +18,15 @@ nav {
       color: $color2;
     }
 
-    .btn.btn-logout {
+    .btns {
+      width: 150px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .btn {
       padding: 5px 10px;
       border-radius: 5px;
 
@@ -32,6 +40,22 @@ nav {
 
       &:hover {
         transform: scale(1.05);
+      }
+    }
+
+    .btn.invisible {
+      background-color: $color1;
+      pointer-events: none;
+    }
+
+    @media screen and (max-width: 400px) {
+      .btns {
+        width: 120px;
+      }
+
+      .btn {
+        padding: 4px 8px;
+        font-size: 14px;
       }
     }
   }

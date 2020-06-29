@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { environment } from 'src/environments/environment';
-import { GithubGistService } from 'src/app/services/github-gist.service';
+import { StateHelperService } from 'src/app/services/state-helper.service';
+import { StateService } from 'src/app/services/state.service';
 
 @Component({
   selector: 'app-navbar',
@@ -10,16 +10,26 @@ import { GithubGistService } from 'src/app/services/github-gist.service';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
+  get hasUpdates(): boolean {
+    return this.stateHelper.hasUpdates;
+  }
 
   constructor(private router: Router,
-              private gistService: GithubGistService) {
+              private stateService: StateService,
+              private stateHelper: StateHelperService) {
   }
 
   ngOnInit(): void {
   }
 
   logOut(): void {
-    this.router.navigate(['/auth']).then();
+    if (confirm('Are you sure you want to log out?')) {
+      this.router.navigate(['/auth']).then();
+    }
+  }
+
+  saveData(): void {
+    this.stateService.saveToPersistentStore();
   }
 
 }
