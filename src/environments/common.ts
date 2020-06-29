@@ -1,6 +1,7 @@
 export const common = {
   auth: {
     key: 'githubPat',
-    value: ''
-  }
+  },
+  githubRateLimit: 'https://api.github.com/rate_limit',
+  githubPatGenerateLink: 'https://github.com/settings/tokens/new'
 };

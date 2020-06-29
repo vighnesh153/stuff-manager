@@ -1,0 +1,75 @@
+@import "src/global";
+
+.container {
+  @extend .full-space;
+  position: relative;
+
+  @extend .flex-center;
+}
+
+.content {
+  width: 310px;
+}
+
+.error {
+  margin-bottom: 15px;
+  padding: 5px 10px;
+
+  border-radius: 5px;
+  border: 1px solid red;
+
+  color: red;
+  font-weight: bold;
+  background-color: #e5967e;
+}
+
+.input {
+  width: 100%;
+  position: relative;
+
+  input {
+    width: 100%;
+    padding: 5px 10px;
+
+    font-size: 16px;
+  }
+}
+
+.info {
+  margin-top: 10px;
+  color: #333;
+  font-style: italic;
+
+  .gist {
+    padding: 2px 4px;
+
+    background-color: $color1;
+    color: $color2;
+  }
+}
+
+.recommendation {
+  margin-top: 15px;
+  padding: 10px;
+
+  background-color: #ccc;
+  font-weight: bold;
+}
+
+.submit {
+  width: 100%;
+  height: 40px;
+  margin-top: 15px;
+
+  @extend .flex-center;
+
+  background-color: $color1;
+  color: $color2;
+
+  cursor: pointer;
+  transition: transform 200ms ease-in-out;
+
+  &:hover {
+    transform: scale(1.02);
+  }
+}

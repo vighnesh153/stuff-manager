@@ -1,0 +1,14 @@
+@import "src/global";
+
+.container {
+  @extend .full-space;
+  position: relative;
+
+  @extend .flex-center;
+}
+
+.message {
+  color: $color1;
+  font-size: 20px;
+  font-weight: bold;
+}

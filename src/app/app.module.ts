@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthComponent } from './components/auth/auth.component';
@@ -15,6 +17,7 @@ import { NotesComponent } from './components/notes/notes.component';
 import { StyledTitleComponent } from './shared/styled-title/styled-title.component';
 import { EditDeleteBtnPairComponent } from './shared/edit-delete-btn-pair/edit-delete-btn-pair.component';
 import { TodoComponent } from './components/todo/todo.component';
+import { PleaseWaitComponent } from './components/please-wait/please-wait.component';
 
 @NgModule({
   declarations: [
@@ -29,11 +32,13 @@ import { TodoComponent } from './components/todo/todo.component';
     NotesComponent,
     StyledTitleComponent,
     EditDeleteBtnPairComponent,
-    TodoComponent
+    TodoComponent,
+    PleaseWaitComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     FormsModule
   ],
   providers: [],

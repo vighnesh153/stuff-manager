@@ -1,1 +1,25 @@
-<p>auth works!</p>
+<div class="container">
+  <div class="content">
+    <div class="error" *ngIf="needsLogin">
+      You need to enter the token first.
+    </div>
+    <div class="error" *ngIf="hasError">
+      Either the token is invalid or the token doesn't have
+      gist scope selected. Please generate a new one and delete the
+      old one.
+    </div>
+    <label class="input">
+      <input type="text" placeholder="Github PAT" [(ngModel)]="token">
+    </label>
+    <div class="info">
+      <a [href]="patGeneratorUrl" target="_blank">Generate</a>
+      new Github PAT with <span class="gist">gist</span> scope checked.
+    </div>
+    <div class="recommendation">
+      It is recommended to generate different PATs for/on different devices.
+    </div>
+    <div class="submit" (click)="submit()">
+      Verify
+    </div>
+  </div>
+</div>
