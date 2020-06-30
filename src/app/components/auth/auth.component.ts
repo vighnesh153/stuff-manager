@@ -16,6 +16,7 @@ export class AuthComponent implements OnInit {
 
   hasError = false;
   needsLogin = false;
+  loading = true;
 
   constructor(private router: Router,
               private route: ActivatedRoute,
@@ -26,16 +27,22 @@ export class AuthComponent implements OnInit {
       this.router.navigate(['/home']).then();
       return;
     }
-    const { hasError, needsLogin } = this.route.snapshot.queryParams;
-    if (hasError) {
-      this.hasError = true;
-    }
-    if (needsLogin) {
-      this.needsLogin = true;
-    }
-    localStorage.removeItem(environment.auth.key);
-    this.gistService.isTokenValid = false;
-    this.gistService.setToken('');
+    this.gistService.hasGistScope()
+      .subscribe(value => {
+        if (value) {
+          this.router.navigate(['/home']).then();
+          return;
+        }
+        const { hasError, needsLogin } = this.route.snapshot.queryParams;
+        if (hasError) {
+          this.hasError = true;
+        }
+        if (needsLogin) {
+          this.needsLogin = true;
+        }
+        this.gistService.unsetToken();
+        this.loading = false;
+      });
   }
 
   submit(): void {

@@ -14,9 +14,6 @@ export class PleaseWaitComponent implements OnInit {
               private gistService: GithubGistService) { }
 
   ngOnInit(): void {
-    if (this.gistService.isTokenSet() === false) {
-      this.checkInLocalStorage();
-    }
     this.gistService.hasGistScope()
       .subscribe(hasGistScope => {
         if (hasGistScope) {
@@ -24,23 +21,17 @@ export class PleaseWaitComponent implements OnInit {
           this.gistService.isTokenValid = true;
           this.router.navigate(['/home']).then();
         } else {
-          this.gistService.isTokenValid = false;
-          this.gistService.setToken('');
-          localStorage.removeItem(environment.auth.key);
-          this.router.navigate(['/auth'], {
-            queryParams: {
-              needsLogin: true
-            }
-          }).then();
+          const params: { hasError?: boolean, needsLogin?: boolean } = {};
+          if (this.gistService.Token.length > 0) {
+            params.hasError = true;
+          } else {
+            params.needsLogin = true;
+          }
+          this.gistService.unsetToken();
+          this.router.navigate(['/auth'],
+            { queryParams: params }).then();
         }
       });
-  }
-
-  checkInLocalStorage(): void {
-    const token = localStorage.getItem(environment.auth.key);
-    if (token !== null) {
-      this.gistService.setToken(token);
-    }
   }
 
 }

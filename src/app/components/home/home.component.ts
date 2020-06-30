@@ -32,12 +32,12 @@ export class HomeComponent implements OnInit, CanComponentDeactivate {
 
   canComponentDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
     if (this.stateHelper.hasUpdates === false) {
-      this.gistService.isTokenValid = false;
+      this.gistService.unsetToken();
       return true;
     }
     if (confirm('Changes have not been saved. ' +
       'Do you want to discard the changes?')) {
-      this.gistService.isTokenValid = false;
+      this.gistService.unsetToken();
       return true;
     }
     return false;

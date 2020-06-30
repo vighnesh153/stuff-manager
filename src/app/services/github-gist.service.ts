@@ -18,6 +18,11 @@ import { StateHelperService } from 'src/app/services/state-helper.service';
   providedIn: 'root'
 })
 export class GithubGistService {
+  private token = '';
+  private gistId = '';
+  private username = '';
+
+  isTokenValid = false;
 
   get Token(): string {
     return this.token;
@@ -30,13 +35,8 @@ export class GithubGistService {
               private courseIdeasState: CourseIdeasStateService,
               private notesState: NoteStateService,
               private stateHelper: StateHelperService) {
+    this.checkInLocalStorage();
   }
-
-  private token = '';
-  private gistId = '';
-  private username = '';
-
-  isTokenValid = false;
 
   private static dbBody(): {} {
     const emptyContent: DbData = {
@@ -57,8 +57,17 @@ export class GithubGistService {
     };
   }
 
-  isTokenSet(): boolean {
-    return this.token.length > 0;
+  private checkInLocalStorage(): void {
+    const token = localStorage.getItem(environment.auth.key);
+    if (token !== null) {
+      this.setToken(token);
+    }
+  }
+
+  unsetToken(): void {
+    this.isTokenValid = false;
+    this.setToken('');
+    localStorage.removeItem(environment.auth.key);
   }
 
   setToken(token: string): void {

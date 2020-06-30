@@ -11,6 +11,22 @@
   width: 310px;
 }
 
+.heading {
+  margin-bottom: 20px;
+
+  text-align: center;
+  color: $color1;
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.loading {
+  text-align: center;
+  color: $color1;
+  font-size: 20px;
+  font-weight: bold;
+}
+
 .error {
   margin-bottom: 15px;
   padding: 5px 10px;

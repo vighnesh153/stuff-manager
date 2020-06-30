@@ -1,5 +1,11 @@
 <div class="container">
   <div class="content">
+    <div class="heading">
+      Stuff Manager
+    </div>
+    <div class="loading" *ngIf="loading">
+      Initial status check...
+    </div>
     <div class="error" *ngIf="needsLogin">
       You need to enter the token first.
     </div>
@@ -8,17 +14,17 @@
       gist scope selected. Please generate a new one and delete the
       old one.
     </div>
-    <label class="input">
+    <label class="input" *ngIf="!loading">
       <input type="text" placeholder="Github PAT" [(ngModel)]="token">
     </label>
-    <div class="info">
+    <div class="info" *ngIf="!loading">
       <a [href]="patGeneratorUrl" target="_blank">Generate</a>
       new Github PAT with <span class="gist">gist</span> scope checked.
     </div>
-    <div class="recommendation">
+    <div class="recommendation" *ngIf="!loading">
       It is recommended to generate different PATs for/on different devices.
     </div>
-    <div class="submit" (click)="submit()">
+    <div class="submit" (click)="submit()" *ngIf="!loading">
       Verify
     </div>
   </div>
