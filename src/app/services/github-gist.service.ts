@@ -121,8 +121,8 @@ export class GithubGistService {
     const gistIdObservable = await this.getGistId().toPromise();
     this.gistId = await gistIdObservable.toPromise();
     const latestCommit = await this.getLatestCommit().toPromise();
-    // const corsPrefix = environment.corsAnywhere;
-    const corsPrefix = '';
+    const corsPrefix = environment.corsAnywhere;
+    // const corsPrefix = '';
     const rawDataUrl = `${corsPrefix}` +
         `https://gist.githubusercontent.com/${this.username}` +
       `/${this.gistId}/raw/${latestCommit}/data.json`;
